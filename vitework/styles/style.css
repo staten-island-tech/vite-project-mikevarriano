@@ -1,0 +1,139 @@
+:root {
+    --bgColor:#000,
+    --barColor: #000;
+    --barText: #000;
+    --fontColor:#000;
+    --cardBorder: #000;
+    --boxShadow: #000;
+}
+
+body {
+    color:var(--fontColor);   
+    background-color: var(--bgColor);
+    overflow-x: hidden;
+    padding: 0px;
+}
+
+#topbar {
+    height: 50px;
+    width: 100vw;
+    position: relative;
+    left:-8px;
+    top: -8px;
+    margin: 0px 0px;
+    background-color: var(--barColor);
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+        vertical-align: bottom;
+}
+
+
+
+#ThemeDropDownMenu {
+    --x: 500px;
+    display: flex;
+    position: fixed;
+    right : var(--x);
+    top: 50px;
+    width: 400px;
+    z-index: 2;
+    align-content: space-around;
+}
+
+
+#ThemeDropDownMenu div {
+    background-color: var(--bgMidColor);
+    border: 1px solid black;
+    width: 40%;
+    font-size: 16px;
+    padding: 6px;
+    margin: 0px;
+    text-align: center;
+    transition: all 0.099s;
+}
+
+h1 {
+    display: inline;
+    margin: 0px 0px;
+    padding: 0px 0px;
+    font-size: 40px;
+    color: var(--barText);
+    font-weight: bold;
+    text-decoration: underline;
+    grid-column: 3;
+    grid-row: 1;
+}
+
+#mommy {
+    width: 100vw;
+    padding: 0px 0px;
+    margin: 0px auto;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    justify-content: center;
+    position: relative;
+}
+#mommy .TC {
+    width: 400px;
+    min-width: 24%;
+    max-width: 100%;
+    aspect-ratio: 1;
+    border-radius: 20px;
+    margin: 70px 50px;
+    margin-top: 30px;
+    background-color: var(--barColor);
+    border: 4px solid var(--cardBorder);
+    transition: all 0.35s;
+}
+#mommy .TC:hover {
+    transform: scale(1.06);
+    box-shadow: 0px 0px 17px var(--boxShadow) ;
+}
+.stats {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+}
+.stats .image {
+    width: 50%;
+    height: 100%;
+    background-attachment:local;
+    background-size: 100% 100%;
+    background-position: 0px 0px;
+    background-origin: border-box;
+}
+.stats .text {
+    width: 50%;
+    height: 100%;
+}
+#mommy h3 {
+    text-align: center;
+    margin: 5px 0px;
+    font-size: 30px;
+}
+.stats p {
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+
+
+.good {
+    color: rgb(35,200,25);
+    font-weight: bold;
+    text-shadow: 0px 1px 0px black
+}
+.bad {
+    color: rgb(200,35,25);
+    font-weight: bold;
+    text-shadow: 0px 1px 0px black
+}
+
+#FilterBy {
+    margin: 0px 0px;
+    margin-top: 15px;
+    text-align: center;
+    filter: invert(20%);
+}
+
