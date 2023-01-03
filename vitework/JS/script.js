@@ -1,38 +1,38 @@
 import { GS } from "./cars.js";
 let GrandSelection = GS;
 import { Theme } from "./themes.js";
+//constant (object)
 const DOM = {
   root: document.documentElement,
   TM: document.getElementById("ThemeMenu"),
   mommy: document.getElementById("mommy"),
   forSaleCheck: document.getElementById("forSaleCheck"),
   cheapCheck: document.getElementById("cheapCheck"),
+  bluebutton: document.getElementById("blue"),
+  greybutton: document.getElementById("grey"),
+  pinkbutton: document.getElementById("pink")
 };
 
-let currentTheme = Theme["Blue Theme"];
+let currentTheme = Theme[0];//current theme is a variable and I am setting it to an object (Blue Theme)
 
 function changeTheme(theme) {
   currentTheme = theme;
-  Object.keys(theme).forEach(function (key) {
-    DOM.root.style.setProperty(key, theme[key]);
+  Object.keys(theme).forEach(function (key) {//foreach(for every name of the property in the theme) creates array of keys
+    DOM.root.style.setProperty(key, theme[key]);//setProperty overrides my stylecss code by setting the property to the same key value pair
   });
-}
+}//key(theme) gets the value from the key
 
-changeTheme(currentTheme);
-
-function loadThemeButtons() {
-  Object.keys(Theme).forEach((key) => {
-    let newDIV = document.createElement("button");
-    newDIV.className = "themeBu";
-    newDIV.onclick = function () {
-      changeTheme(Theme[key]);
-    };
-    newDIV.innerHTML = key;
-    DOM.TM.appendChild(newDIV);
-  });
-}
-loadThemeButtons();
-function boolToForSale(boolean) {
+changeTheme(currentTheme);//theme will always match the current theme
+DOM.bluebutton.addEventListener("click", function(){
+  changeTheme(Theme[0])
+})
+DOM.greybutton.addEventListener("click", function(){
+  changeTheme(Theme[2])
+})
+DOM.pinkbutton.addEventListener("click", function(){
+  changeTheme(Theme[1])
+})
+function boolToForSale(boolean) {//if for sale is true return good if for sale is false return bad
   if (boolean) {
     return '<span class="good">Up for Sale. </span>';
   }
@@ -42,15 +42,19 @@ let filterByCheap = false;
 let filterByForSale = false;
 
 function loadCards() {
-  let filterBy = function (element) {
-    return (
-      (!filterByCheap || element.price < 20000) &&
-      (!filterByForSale || element.forSale)
-    );
-  };
+  
   DOM.mommy.innerHTML = "";
 
-  GrandSelection.filter(filterBy).forEach((card) =>
+  GrandSelection.filter(card=> {
+    let good = true
+    if(filterByCheap&&card.price>20000){
+      good=false
+    }
+    if(filterByForSale&&card.forSale== false){
+      good=false
+    }
+   return good
+  }).forEach((card) =>
     DOM.mommy.insertAdjacentHTML(
       "beforeend",
       `
@@ -72,7 +76,7 @@ function loadCards() {
 }
 loadCards();
 function toggleForSaleFilter() {
-  filterByForSale = !filterByForSale;
+  filterByForSale = !filterByForSale;//reverses checkbox
   loadCards();
 }
 function toggleCheapFilter() {
